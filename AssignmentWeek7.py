@@ -5,15 +5,22 @@ employee_list = [1121, "Jackie Grainger", 22.22, 1122, "Jignesh Thrakkar", 25.25
 employee_name = []
 employee_wage = []
 employee_info = []
+adjusted_wage = []
+wage_variable = 0
 
 for employee in employee_list:
-    if employee is str:
-         employee_name.insert(employee)
-    elif employee is int:
-        employee_info.append(employee)
-    elif employee is float:
-        employee_wage.append(employee)
+    if employee not in employee_info and employee not in employee_name and employee not in employee_wage:
+        if type(employee) is str:
+            employee_name.append(employee)
+        elif type(employee) is int:
+            employee_info.append(employee)
+        elif type(employee) is float:
+            employee_wage.append(employee)
+
+for wage in employee_wage:
+   adjusted_wage.append(wage*1.3)
 
 print(employee_name)
 print(employee_info)
 print(employee_wage)
+print(adjusted_wage)
