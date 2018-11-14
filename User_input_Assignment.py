@@ -13,7 +13,7 @@ if Employee_ID:
                     if Employee_Address.isalpha():
                         print("Hello," + Employee_name + " Your Employee ID is " + Employee_ID + ", your email is " + Employee_Email + " Your address is " + Employee_Address)
                     else:
-                           print("Hello," + Employee_name + " Your Employee ID is " + Employee_ID + ", your email is " + Employee_Email +  " You did not provide an address")
+                           print("Hello," + Employee_name + " Your Employee ID is " + Employee_ID + ", your email is " + Employee_Email +  " You did not provide an address.")
                 else:
                     print("That isnt a valid email")
             else:
