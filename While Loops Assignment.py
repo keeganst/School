@@ -16,7 +16,7 @@ while program_running:
         if Employee_ID:
             try:
                 int(Employee_ID)
-                if len(Employee_ID) == 7:    
+                if len(Employee_ID) >= 7:    
                     Employee_ID_ok = True
                 else:
                     Employee_ID_ok = False
@@ -69,17 +69,37 @@ while program_running:
         else:
             Employee_email_ok = False
         if not Employee_email_ok:
-            Employee_email = input("The second part of your phone number was not properly formatted. Please try again: ") 
+            Employee_email = input("Your Email was not properly formatted. Please try again: ") 
 
-    Employee_info.append({'Employee ID': Employee_ID, 'Employee Name': Employee_name, 'Employee Email': Employee_email})
-    print(Employee_info)
+#begin address processing
+
+    Employee_address = input("Please enter your address ")
+    Employee_address_ok = False
+
+    while not Employee_address_ok:
+        if Employee_address:
+            try:
+                str(Employee_address)
+                if Employee_address.isalnum:    
+                    Employee_address_ok = True
+                else:
+                    Employee_address_ok = False
+            except:
+                Employee_address_ok = False
+        else:
+            Employee_address_ok = False
+        if not Employee_address_ok:
+            Employee_address = input("Your address properly formatted. Please try again: ") 
+
+    Employee_info.append({'Employee ID': Employee_ID, 'Employee Name': Employee_name, 'Employee Email': Employee_email, 'Employee Address' : Employee_address})
+    
     count_variable = count_variable + 1
 
     if count_variable >= 5:
         break
     else:
         continue
-
+print(Employee_info)
 
 
 print(Employee_info)
