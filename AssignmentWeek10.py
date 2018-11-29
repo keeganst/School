@@ -1,54 +1,97 @@
+
+#list for user input and a list for checking strings
+college_records = []
+
 class student():
-    def __init__(self, first_name, last_name, student_ID, course_type):
+    def __init__ (self, first_name,last_name,student_id,course_type, individual_type):
+        """initializing student variables"""
         self.first_name = first_name
         self.last_name = last_name
-        self.course_type = course_type
         self.student_ID = student_ID
-    
-    def get_student_ID():
-        """Getting the course type"""
-        self.student_ID = input("Please enter your student ID")
+        self.course_type = course_type
+        self.individual_type = individual_type
 
-    def get_course_type(self):
-        """Getting the course type"""
-        self.course_type = input("Please enter your Program of study")
-
+    def get_student_info(individual_type):
+        """gathering student information"""
+        first_name = input("Please enter your first name: ")
+        last_name = input("Please enter your last name: ")
+        student_id = input("Please enter your student ID ")
+        course_type = input("Please enter your course of study ")
+        college_records.append({'ID': student_id, 'First Name': first_name, 'Course type': course_type})
 
 class instructor():
-    def __init__(self, first_name, last_name, instructor_ID, grad_location):
+    def __init__ (self, first_name,last_name,inst_ID, inst_grad, individual_type):
+        """initializing inscructor variables"""
         self.first_name = first_name
         self.last_name = last_name
-        self.instructor_ID = instructor_ID
-        self.grad_location = grad_location
-    
-    def get_inst_ID(self):
-        self.instructor_ID = input("Please enter your Instructor ID")
-
-    def get_grad_location(self):
-        """Getting the course type"""
-        self.grad_location = input("Please enter the last college you graduated from")
-
-
-
-
-
-class validator():
-    def __init__(self, first_name, last_name):
+        self.inst_ID = inst_ID
+        self.int_grad = course_type
         self.individual_type = individual_type
-        self.first_name = first_name
-        self.last_name = last_name
-    
-    def check_first_name():
-        bad_chars = [ '!', '@', '#' ,'$', '%', '^', '&', '*', '(', ')', '_', '=', '+', ',', '<', '>', '/', '?', ';', ':', '[', ']', '{', '}', ')']
-        variable = False
-        while not variable:
-            str(self.first_name)
-            for chars in bad_chars:
-                if chars not in self.first_name:
-                    variable = True
-                else:
-                    self.first_name = input("Your first name was not formatted properly please try again ") 
 
+    def get_instructor_info(individual_type):
+        """initializing instructor variables"""
+        first_name = input("Please enter your first name: ")
+        last_name = input("Please enter your first name: ")
+        inst_ID = input("please enter your instructor ID ")
+        inst_grad = input("PLease enter the last college you graduated from ")
+        college_records.append({'ID': inst_ID, 'First Name': first_name, 'Graduation Place': inst_grad})
+
+
+
+class validate(student,instructor):
+    """validation class"""
+    def __init__(self, first_name,last_name,student_id,course_type,inst_ID, inst_grad):
+        """initializing variables"""
+        super().__init__(first_name,last_name,student_id,course_type,inst_ID, inst_grad)
+        self.bad_chars = ("[","]","\n","!","@","#","$","%","^","&","*","(",")","-","_","+","/","'","|","{","}",">","?")
+
+    def check_student_ID(student_id):
+        """checking the student ID"""
+        flag = False
+        while not flag:
+            if self.student_id:
+                try:
+                    int(student_id)
+                    if len(student_id) <= 7:    
+                        flag = True
+                    else:
+                        student_id = input("Student ID was not properly formatted. Please try again: ")
+                except:
+                    flag = False
+                
+    def check_inst_ID(inst_ID):
+        """checking the instructor ID"""
+        flag = False
+        while not flag:
+            if self.inst_ID:
+                try:
+                    int(inst_ID)
+                    if len(inst_ID) >= 5:    
+                        flag = True
+                    else:
+                        inst_ID = input("Instructor ID was not properly formatted. Please try again: ")
+                except:
+                    flag = False
+                    
+    def check_first_name(first_name):
+        """checking the first name"""
+        str(first_name)
+        self.bad_chars = ("[","]","\n","!","@","#","$","%","^","&","*","(",")","-","_","+","/","'","|","{","}",">","?")
+        for char in self.bad_chars:
+            if char in first_name:
+                first_name = input("Your first name was improperly formatted please try again")
+            else:
+                continue
+
+    def check_last_name(last_name):
+        """checking the last name"""
+        str(last_name)
+        self.bad_chars = ("[","]","\n","!","@","#","$","%","^","&","*","(",")","-","_","+","/","'","|","{","}",">","?")
+        for char in self.bad_chars:
+            if char in last_name:
+                last_name = input("Your first name was improperly formatted please try again")
+            else:
+                continue
 
 
 flag = False
@@ -57,17 +100,13 @@ while not flag:
     individual_type = input("Are you a Instructor(I) or a Student(S) ")
     str(individual_type)
 
-    if individual_type == "I" or individual_type == "S":
-        first_name = input("Please enter your first name: ")
-        last_name = input("Please enter your first name: ")
-        validator(first_name, last_name)
+    if  individual_type == "S":
+        student.get_student_info("S")
+        
+    elif individual_type == "I" :
+        instructor.get_instructor_info("I")
     else:
         individual_type = input("Please enter I for instructor or S for student ")
-    
-    if individual_type == "I":
-        instructor_ID = instructor.get_inst_ID()
-    elif individual_type == "S":
-      student_id = student.get_student_ID()
 
     escape = input("Would you like to enter another user Y/N? ")
     
